@@ -6,7 +6,6 @@ import { Component ,inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators ,ValidatorFn ,AbstractControl,ValidationErrors } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgIf } from '@angular/common';
 import { Observable, of  } from 'rxjs';
  // Date Picker
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -29,9 +28,9 @@ export const CUSTOM_DATE_FORMAT = {
 import { AuthService } from '../../../../app/services/auth.service';
 
 @Component({
-  selector: 'app-side-register',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, NgIf ],
-  templateUrl: './side-register.component.html',
+  selector: 'app-register',
+  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule ],
+  templateUrl: './register.component.html',
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     {provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT },

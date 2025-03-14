@@ -5,14 +5,13 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgIf } from '@angular/common';
 
 import { AuthService } from '../../../../app/services/auth.service';
 
 @Component({
-  selector: 'app-side-login',
+  selector: 'app-login',
   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './side-login.component.html',
+  templateUrl: './login.component.html',
 })
 export class AppSideLoginComponent {
   fb = inject(FormBuilder);
