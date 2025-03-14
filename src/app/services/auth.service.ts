@@ -33,9 +33,12 @@ export class AuthService {
     );
   }
   verify():Observable<any>{
-  return this.http.get<any>(`${this.apiUrl}/verify`, this.httpOptions ).pipe(
+    return this.http.get(`${this.apiUrl}/protected`, this.httpOptions ).pipe(
       catchError((error: HttpErrorResponse) => {
-        return of({error : error.error.error});
+        if(error.error.ok === false){
+          return of({ok:false})
+        }
+          return of({ok:true})
       })
     )
   }
