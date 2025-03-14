@@ -8,20 +8,34 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgIf } from '@angular/common';
 import { Observable, of  } from 'rxjs';
-
+ // Date Picker
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  DateAdapter
-} from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
+export const CUSTOM_DATE_FORMAT = {
+    parse: {
+      dateInput: 'DD/MM/YYYY',
+    },
+    display: {
+      dateInput: 'DD/MM/YYYY',
+      monthYearLabel: 'MMMM YYYY',
+      dateA11yLabel: 'LL',
+      monthYearA11yLabel: 'MMMM YYYY'
+    },
+};
+
+ // Date Picker
 import { AuthService } from '../../../../app/services/auth.service';
+
 @Component({
   selector: 'app-side-register',
   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, NgIf ],
-  providers: [
-    MatDatepickerModule,
-  ],
   templateUrl: './side-register.component.html',
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    {provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT },
+  ],
 })
 export class AppSideRegisterComponent {
   options = this.settings.getOptions();
@@ -44,7 +58,7 @@ export class AppSideRegisterComponent {
     firstname : ['' , Validators.required],
     birth_date : ['' , Validators.required],
     CIN : ['' , Validators.required],
-    gender : ['' , Validators.required],
+    gender : ['masculin' , Validators.required],
     mail: ['', Validators.email],
     phone: [''],
     password: ['', Validators.required],
