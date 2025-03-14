@@ -1,0 +1,113 @@
+<title>Authentification | Connexion</title>
+
+
+<div class="blank-layout-container justify-content-center align-items-center bg-light">
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+    <div class="col-lg d-flex align-items-center" style="border: solid 1px red;">
+      <mat-card class="boxed-auth" style="display: flex; height:fit-content ;flex-direction: row; ">
+        <div class="p-10 container_display" style="width: 100%; border-radius: 16px;
+          ">
+        </div>
+
+        <mat-card-content class="p-10 h-100 w-100"
+          style="display:flex; flex-direction: column;gap: 1rem; justify-content: space-evenly;">
+          <div
+            style="width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+
+            <img src="./assets/images/logos/ReviveAuto-1.svg" class="align-middle m-2"
+              style="aspect-ratio:1/1; width: 45px; height: 45px;" alt="logo" />
+
+            <h1 style="margin:1rem 0  1rem 0;">S'inscrire</h1>
+          </div>
+          <form class="" (ngSubmit)="submit()" [formGroup]="form">
+
+
+            <div style="display: flex; flex-direction: row ; gap: 1rem;">
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label class="mat-subtitle-2 ">Nom</mat-label>
+                <input matInput formControlName="name" placeholder="RAKOTO" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label class="mat-subtitle-2 ">Prénoms</mat-label>
+                <input matInput formControlName="firstname" placeholder="Jean" />
+              </mat-form-field>
+            </div>
+
+            <div style="display: flex; flex-direction: row ; gap: 1rem;">
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label class="mat-subtitle-2 ">Date de Naissance</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birth_date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label class="mat-subtitle-2 ">Sexe</mat-label>
+                <select matNativeControl formControlName="gender">
+                  <option value="masculin">Homme</option>
+                  <option value="feminin">Femme</option>
+                </select>
+              </mat-form-field>
+
+            </div>
+
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2 ">CIN</mat-label>
+              <input matInput formControlName="CIN" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2 ">Mail/Telephone</mat-label>
+              <select matNativeControl formControlName="login_field" (change)="onFieldSelect()">
+                <option value="mail">Mail</option>
+                <option value="phone">Phone</option>
+              </select>
+            </mat-form-field>
+            <div *ngIf="login_field === 'mail'">
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label class="mat-subtitle-2 " *ngIf="login_field === 'mail'">Mail</mat-label>
+                <input matInput formControlName="mail" />
+                @if (form.get('mail')?.hasError('email') && !form.get('mail')?.hasError('required')) {
+                <mat-error>Please enter a valid email address</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="login_field === 'phone'">
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-label class="mat-subtitle-2 ">Phone</mat-label>
+                <input matInput formControlName="phone" />
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2 ">Mot de passe</mat-label>
+              <input matInput type="password" formControlName="password" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2 ">Confirmer mot de passe</mat-label>
+              <input matInput type="password" formControlName="password_confirm" />
+              @if (form.get('password_confirm')?.hasError('required')) {
+              <mat-error>Veuillez confirmer votre mot de passe</mat-error>
+              }
+              @if (form.get('password_confirm')?.hasError('notSame')) {
+              <mat-error>Le mot de passe est différent</mat-error>
+              }
+            </mat-form-field>
+
+            <button type="submit" style="margin-top: 2rem;" [disabled]="form.invalid" mat-flat-button color="primary"
+              class="w-100">
+              Sign In
+            </button>
+          </form>
+          <span class="d-block f-w-500 text-center m-t-24">Créer votre compte?
+            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
+              Create an account</a>
+          </span>
+        </mat-card-content>
+        <button type="button" (click)="test()">Test</button>
+      </mat-card>
+    </div>
+  </div>
+</div>
