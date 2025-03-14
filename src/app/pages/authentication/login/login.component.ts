@@ -26,7 +26,7 @@ export class AppSideLoginComponent {
 
   submit() {
     this.authService.login(
-      {mail:this.form.getRawValue().mail, phone: this.form.getRawValue().phone , password:this.form.getRawValue().password , role_id : 'role_002' }
+      {mail:this.form.getRawValue().mail, phone: this.form.getRawValue().phone , password:this.form.getRawValue().password , role : 'role_002' }
       ).subscribe((response) => {
         console.log(response);
         if (response.error !== undefined ) {
