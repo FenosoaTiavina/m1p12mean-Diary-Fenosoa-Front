@@ -17,29 +17,17 @@
           <form class="" (ngSubmit)="submit()" [formGroup]="form">
 
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Mail/Telephone</mat-label>
-              <select matNativeControl formControlName="login_field" (change)="onFieldSelect()">
-                <option value="mail">Mail</option>
-                <option value="phone">Phone</option>
-              </select>
+              <mat-label class="mat-subtitle-2 ">Mail</mat-label>
+              <input matInput formControlName="mail" email />
             </mat-form-field>
-            <div *ngIf="login_field === 'mail'">
-              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-                *ngIf="login_field === 'mail'">Mail</mat-label>
-              <mat-form-field appearance="outline" class="w-100" color="primary">
-                <input matInput formControlName="mail" />
-              </mat-form-field>
-            </div>
-            <div *ngIf="login_field === 'phone'">
-              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Phone</mat-label>
-              <mat-form-field appearance="outline" class="w-100" color="primary">
-                <input matInput formControlName="phone" />
-              </mat-form-field>
-            </div>
-
-
-            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Mot de passe</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2 ">Phone</mat-label>
+              <input matInput formControlName="phone" />
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2 ">Mot de passe</mat-label>
               <input matInput type="password" formControlName="password" />
             </mat-form-field>
 
@@ -48,9 +36,10 @@
               Sign In
             </button>
           </form>
-          <span class="d-block f-w-500 text-center m-t-24">Créer votre compte?
+          <span class=" f-w-500 text-center m-t-24">
             <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
-              Create an account</a>
+              Créer votre compte?
+            </a>
           </span>
         </mat-card-content>
         <div class="p-10 container_display" style="width: 100%; border-radius: 16px;

@@ -55,30 +55,18 @@
               <mat-label class="mat-subtitle-2 ">CIN</mat-label>
               <input matInput formControlName="CIN" />
             </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-label class="mat-subtitle-2">Mail</mat-label>
+              <input matInput formControlName="mail" email />
+              @if (form.get('mail')?.hasError('email') && !form.get('mail')?.hasError('required')) {
+              <mat-error>Please enter a valid email address</mat-error>
+              }
+            </mat-form-field>
 
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <mat-label class="mat-subtitle-2 ">Mail/Telephone</mat-label>
-              <select matNativeControl formControlName="login_field" (change)="onFieldSelect()">
-                <option value="mail">Mail</option>
-                <option value="phone">Phone</option>
-              </select>
+              <mat-label class="mat-subtitle-2 ">Phone</mat-label>
+              <input matInput formControlName="phone" />
             </mat-form-field>
-            <div *ngIf="login_field === 'mail'">
-              <mat-form-field appearance="outline" class="w-100" color="primary">
-                <mat-label class="mat-subtitle-2 " *ngIf="login_field === 'mail'">Mail</mat-label>
-                <input matInput formControlName="mail" />
-                @if (form.get('mail')?.hasError('email') && !form.get('mail')?.hasError('required')) {
-                <mat-error>Please enter a valid email address</mat-error>
-                }
-              </mat-form-field>
-            </div>
-
-            <div *ngIf="login_field === 'phone'">
-              <mat-form-field appearance="outline" class="w-100" color="primary">
-                <mat-label class="mat-subtitle-2 ">Phone</mat-label>
-                <input matInput formControlName="phone" />
-              </mat-form-field>
-            </div>
 
             <mat-form-field appearance="outline" class="w-100" color="primary">
               <mat-label class="mat-subtitle-2 ">Mot de passe</mat-label>
@@ -101,12 +89,12 @@
               Sign In
             </button>
           </form>
-          <span class="d-block f-w-500 text-center m-t-24">Créer votre compte?
-            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
-              Create an account</a>
+          <span class="d-block f-w-500 text-center m-t-24"> <a [routerLink]="['/authentication/login']"
+              class="text-decoration-none text-primary f-w-500 f-s-14">
+              Se connecter</a>
           </span>
         </mat-card-content>
-        <button type="button" (click)="test()">Test</button>
+        <!--         <button type="button" (click)="test()">Test</button> -->
       </mat-card>
     </div>
   </div>

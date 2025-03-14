@@ -44,7 +44,6 @@ export class AppSideRegisterComponent {
   authService = inject(AuthService);
   router = inject(Router);
 
-  login_field = 'mail';
 
   private validateSamePassword(control: AbstractControl): ValidationErrors | null {
     const password = control.parent?.get('password');
@@ -66,57 +65,45 @@ export class AppSideRegisterComponent {
   });
 
   constructor(private settings: CoreService) {
-    this.onFieldSelect();
   }
 
   test(){
     Object.keys(this.form.controls).forEach(controlName => {
       const control = this.form.get(controlName);
-      if (control?.errors) {
+      console.log(controlName + " : " +control?.value);
+      /* if (control?.errors) {
         console.log('Control name with error: ', controlName);
         console.log('Error details: ', control.errors);
-      }
+      } */
     });
   }
   submit() {
-    const { mail, phone , name , firstname , password} = this.form.getRawValue();
-    console.log(this.form.getRawValue());
-
-    this.authService.register({role: 'role_002',  mail: mail , phone: phone , name: name , firstname : firstname}).subscribe((response) => {
+    const { mail, phone , CIN , name , firstname , password , gender , birth_date} = this.form.getRawValue();
+    this.authService.register(
+      {
+        role_id: 'role_002',
+        CIN:CIN ,password: password ,
+        gender: gender ,
+        birth_date: birth_date ,
+        mail: mail ,
+        phone: phone ,
+        name: name ,
+        firstname : firstname
+      }
+    ).subscribe((response) => {
         console.log('response', response);
-      if (response.error !== undefined ) {
-        if (response.error.password == true) {
-          this.form.controls['password'].setErrors({'incorrect': true});
+      if (response.field !== undefined ) {
+        if (response.field.CIN == true) {
+          this.form.controls['CIN'].setErrors({'incorrect': true});
         }
-        if (response.error.mail == true) {
+        if (response.field.phone == true) {
+          this.form.controls['phone'].setErrors({'incorrect': true});
+        }
+        if (response.field.mail == true) {
           this.form.controls['mail'].setErrors({'incorrect': true});
         }
         return;
       }
     });
-  }
-
-  onFieldSelect() {
-    const selectFieldControl = this.form.get('login_field');
-
-    // Initially disable both fields and remove required validation
-    this.form.get('mail')?.clearValidators();
-    this.form.get('phone')?.clearValidators();
-
-    if (selectFieldControl?.value === 'mail') {
-      this.form.get('mail')?.enable();
-      this.form.get('phone')?.disable();
-      this.form.get('mail')?.setValidators([Validators.required]);
-      this.login_field = 'mail';
-    } else if (selectFieldControl?.value === 'phone') {
-      this.form.get('phone')?.enable();
-      this.form.get('mail')?.disable();
-      this.form.get('phone')?.setValidators([Validators.required]);
-      this.login_field = 'phone';
-    }
-
-    // Revalidate the form to apply validators dynamically
-    this.form.get('mail')?.updateValueAndValidity();
-    this.form.get('phone')?.updateValueAndValidity();
   }
 }
