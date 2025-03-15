@@ -35,6 +35,10 @@ export class HeaderComponent {
   @Output() toggleMobileNav = new EventEmitter<void>();
   authService = inject(AuthService)
   logout(){
-    this.authService.logout();
+    this.authService.logout().subscribe( response =>{
+      console.log(response);
+    }
+    )
+
   }
 }

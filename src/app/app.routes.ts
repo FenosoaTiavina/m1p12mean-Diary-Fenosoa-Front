@@ -3,21 +3,33 @@ import { inject } from '@angular/core';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
+import { RoleGuard } from './role.guard';
+
 
 export const routes: Routes = [
   {
     path: '',
     component: FullComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        redirectTo: '/client',
-        pathMatch: 'full',
-      },
-      {
         path: 'client',
+        canActivate: [AuthGuard , RoleGuard],
         loadChildren: () =>
           import('./pages/client/clients.routes').then((m) => m.PagesRoutes),
+      },
+      {
+        path: 'manager',
+        canActivate: [AuthGuard , RoleGuard],
+        loadChildren: () =>
+          import('./pages/manager/manager.routes').then((m) => m.PagesRoutes),
+      },
+      {
+        path: 'mechanics',
+        canActivate: [AuthGuard , RoleGuard],
+        loadChildren: () =>
+          import('./pages/mechanics/mechanics.routes').then((m) => m.PagesRoutes),
       },
     ],
   },
@@ -36,14 +48,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: () => {
-      const auth = inject(AuthService);
-      let redirect_route = 'auth/login'
-      auth.verify().subscribe((response : any) => {
-          console.log('response', response);
-      });
-      return redirect_route;
-    },
-  },
+    redirectTo: ''  },
 
 ];

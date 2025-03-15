@@ -26,12 +26,18 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 //Import all material modules
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Datepicker
 import {   provideNativeDateAdapter } from '@angular/material/core';
 
 
+// Cookies
+// import {CookieService} from 'ngx-cookie-service';
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
+    // CookieService,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
