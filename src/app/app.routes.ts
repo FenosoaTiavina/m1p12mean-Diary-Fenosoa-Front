@@ -3,15 +3,17 @@ import { inject } from '@angular/core';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { AuthService } from './services/auth.service';
-import { AuthGuard } from './auth.guard';
-
 
 export const routes: Routes = [
   {
     path: '',
     component: FullComponent,
-    canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        redirectTo: '/client',
+        pathMatch: 'full',
+      },
       {
         path: 'client',
         loadChildren: () =>
@@ -34,6 +36,14 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''  },
+    redirectTo: () => {
+      const auth = inject(AuthService);
+      let redirect_route = 'auth/login'
+      auth.verify().subscribe((response : any) => {
+          console.log('response', response);
+      });
+      return redirect_route;
+    },
+  },
 
 ];
