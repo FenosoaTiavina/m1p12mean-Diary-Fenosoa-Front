@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-item',
-  imports: [TranslateModule, TablerIconsModule, MaterialModule, CommonModule],
+  imports: [TranslateModule, MaterialModule, CommonModule , TablerIconsModule],
   templateUrl: './nav-item.component.html',
   styleUrls: [],
 })

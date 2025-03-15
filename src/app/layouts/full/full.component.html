@@ -33,7 +33,7 @@
           <!-- ============================================================== -->
           <!-- Outlet -->
           <!-- ============================================================== -->
-          <router-outlet></router-outlet>
+          <router-outlet (activate)="onComponentActivated($event)"></router-outlet>
         </main>
       </div>
     </mat-sidenav-content>
