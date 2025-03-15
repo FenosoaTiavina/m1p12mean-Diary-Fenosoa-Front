@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-// import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AuthService } from '../../../../app/services/auth.service';
 
@@ -18,7 +18,7 @@ export class AppSideLoginComponent {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
-  // cookieService = inject(CookieService);
+  cookieService = inject(CookieService);
 
   form = this.fb.nonNullable.group({
     mail: ['' , [ Validators.email , Validators.required ]],
@@ -39,7 +39,7 @@ export class AppSideLoginComponent {
           }
           return;
         } else {
-          // this.cookieService.set('userId', response.userId);
+          this.cookieService.set('userId', response.userId);
           this.router.navigateByUrl('/client');
         }
     });

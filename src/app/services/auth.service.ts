@@ -14,11 +14,8 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
   constructor(private http: HttpClient) { }
 
-  private httpOptions = {
-      withCredentials: true,
-  };
   login(credentials:any):Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/login`,credentials , this.httpOptions).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login`,credentials).pipe(
       catchError((error: HttpErrorResponse) => {
         return of({error : error.error.error}); // This is your fallback value
       })
@@ -26,7 +23,7 @@ export class AuthService {
   }
 
   logout():Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/logout`,this.httpOptions).pipe(
+    return this.http.get<any>(`${this.apiUrl}/logout`).pipe(
       catchError((error: HttpErrorResponse) => {
         return of({error : error.error.error}); // This is your fallback value
       })
@@ -34,14 +31,14 @@ export class AuthService {
   }
 
   register(body:any):Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/register`,body, this.httpOptions).pipe(
+    return this.http.post<any>(`${this.apiUrl}/register`,body).pipe(
       catchError((error: HttpErrorResponse) => {
         return of({error : error.error.error}); // This is your fallback value
       })
     );
   }
   verify():Observable<any>{
-    return this.http.get(`${this.apiUrl}/protected`, this.httpOptions ).pipe(
+    return this.http.get(`${this.apiUrl}/protected`).pipe(
       catchError((error: HttpErrorResponse) => {
         if(error.error.ok === false){
           return of({ok:false})

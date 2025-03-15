@@ -32,12 +32,15 @@ import {   provideNativeDateAdapter } from '@angular/material/core';
 
 
 // Cookies
-// import {CookieService} from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 
+import { HTTP_INTERCEPTORS , withInterceptors } from '@angular/common/http';
+import { HttpSettingInterceptor } from './httpsetting.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // CookieService,
+    provideHttpClient( withInterceptors([HttpSettingInterceptor]) ),
+    CookieService,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,

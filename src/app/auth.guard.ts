@@ -11,6 +11,7 @@ export class AuthGuard implements CanActivate,CanActivateChild {
   constructor(private router: Router) {}
   canActivate(): boolean {
     this.authService.verify().subscribe(val => {
+      console.log(val);
       if (val.ok === false) {
         this.router.navigateByUrl('/authentication/login')
       }
@@ -21,6 +22,7 @@ export class AuthGuard implements CanActivate,CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     this.authService.verify().subscribe(val => {
+      console.log(val);
       if (val.ok === false) {
         this.router.navigateByUrl('/authentication/login')
       }
