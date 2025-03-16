@@ -21,7 +21,6 @@ export class UserService {
 
   getCurrentUser():Observable<any> {
     const user_id = this.cookieService.get('userId');
-    console.log(user_id);
     return this.http.get(`${this.apiUrl}/${user_id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return of({error : error.error.error}); // This is your fallback value
