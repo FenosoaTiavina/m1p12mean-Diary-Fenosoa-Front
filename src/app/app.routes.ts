@@ -12,23 +12,20 @@ export const routes: Routes = [
   {
     path: '',
     component: FullComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard ,RoleGuard],
     children: [
       {
         path: 'client',
-        canActivate: [AuthGuard , RoleGuard],
         loadChildren: () =>
           import('./pages/client/clients.routes').then((m) => m.PagesRoutes),
       },
       {
         path: 'manager',
-        canActivate: [AuthGuard , RoleGuard],
         loadChildren: () =>
           import('./pages/manager/manager.routes').then((m) => m.PagesRoutes),
       },
       {
         path: 'mechanics',
-        canActivate: [AuthGuard , RoleGuard],
         loadChildren: () =>
           import('./pages/mechanics/mechanics.routes').then((m) => m.PagesRoutes),
       },
