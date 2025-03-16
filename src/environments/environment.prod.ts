@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5000' // URL pour le développement
+  apiUrl: 'm1p12mean-diary-fenosoa-back-production.up.railway.app' // URL pour le développement
 };
