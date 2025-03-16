@@ -26,9 +26,6 @@
             "outputPath": {
               "base": "dist/materialm"
             },
-            "externalDependencies": [
-              "zone.js"
-            ],
             "index": "src/index.html",
             "polyfills": [
               "zone.js"

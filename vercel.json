@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/zone.js",
+      "destination": "/node_modules/zone.js/bundles/zone.umd.js"
+    }
+  ]
+}
