@@ -5,7 +5,6 @@ import { inject } from '@angular/core'
 export const RoleGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService)
   userService.getCurrentUser().subscribe(val => {
-    console.log(val);
     return true;
   })
 

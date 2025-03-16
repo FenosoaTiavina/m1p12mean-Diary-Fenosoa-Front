@@ -5,6 +5,7 @@ import { FullComponent } from './layouts/full/full.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
+import { CookieGuard } from './cookie.guard';
 
 
 export const routes: Routes = [
@@ -36,6 +37,7 @@ export const routes: Routes = [
   {
     path: '',
     component: BlankComponent,
+    canActivate: [CookieGuard],
     children: [
       {
         path: 'authentication',
