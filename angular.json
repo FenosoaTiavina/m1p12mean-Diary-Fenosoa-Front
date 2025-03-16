@@ -17,12 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "allowedCommonJsDependencies": [
-              "apexcharts",
-              "bezier-easing",
-              "moment",
-              "zone.js"
-            ],
             "outputPath": {
               "base": "dist/materialm"
             },
@@ -40,7 +34,9 @@
               "src/styles.scss",
               "src/assets/scss/style.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/zone.js/bundles/zone.umd.js"
+            ],
             "browser": "src/main.ts"
           },
           "configurations": {
