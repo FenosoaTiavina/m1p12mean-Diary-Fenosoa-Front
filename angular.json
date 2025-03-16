@@ -20,7 +20,8 @@
             "allowedCommonJsDependencies": [
               "apexcharts",
               "bezier-easing",
-              "moment"
+              "moment",
+              "zone.js"
             ],
             "outputPath": {
               "base": "dist/materialm"
