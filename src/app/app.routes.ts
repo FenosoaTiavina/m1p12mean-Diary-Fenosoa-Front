@@ -37,7 +37,7 @@ export const routes: Routes = [
     canActivate: [CookieGuard],
     children: [
       {
-        path: 'authentication',
+        path: '',
         loadChildren: () =>
           import('./pages/authentication/authentication.routes').then(
             (m) => m.AuthenticationRoutes

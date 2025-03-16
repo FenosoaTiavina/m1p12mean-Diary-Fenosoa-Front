@@ -33,12 +33,11 @@ export class HeaderComponent {
   @Input() showToggle = true;
   @Input() toggleChecked = false;
   @Output() toggleMobileNav = new EventEmitter<void>();
-  authService = inject(AuthService)
-  router = inject(Router)
+  private authService = inject(AuthService)
+  private router = inject(Router)
   logout(){
     this.authService.logout().subscribe( response =>{
-      console.log(response);
+      this.router.navigate(['/']);
     })
-    this.router.navigateByUrl(this.router.url);
   }
 }

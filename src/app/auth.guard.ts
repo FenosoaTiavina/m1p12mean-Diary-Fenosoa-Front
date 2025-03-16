@@ -7,9 +7,8 @@ export const AuthGuard: CanActivateChildFn = (childRoute, state) => {
   const router = inject(Router);
 
   authService.verify().subscribe(val => {
-    console.log(val);
     if (val.ok === false) {
-      router.navigateByUrl('/authentication/login')
+      router.navigateByUrl('/login')
     }
   })
   return true;

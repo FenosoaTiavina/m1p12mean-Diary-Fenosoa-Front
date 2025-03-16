@@ -103,6 +103,9 @@ export class AppSideRegisterComponent {
         }
         return;
       }
+      if (response.ok) {
+        this.router.navigateByUrl('/login');
+      }
     });
   }
 }
