@@ -30,6 +30,8 @@ export class AppSideLoginComponent {
     this.authService.login(
       {mail:this.form.getRawValue().mail, phone: this.form.getRawValue().phone , password:this.form.getRawValue().password , role : 'role_002' }
       ).subscribe((response) => {
+        console.log(response);
+
         if (response.error !== undefined ) {
           if (response.error.password == true) {
             this.form.controls['password'].setErrors({'incorrect': true});

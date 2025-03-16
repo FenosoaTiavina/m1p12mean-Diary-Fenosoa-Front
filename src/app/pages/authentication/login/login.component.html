@@ -14,16 +14,26 @@
 
             <h1 style="margin:1rem 0  1rem 0;">Se connecter!</h1>
           </div>
-          <form class="" (ngSubmit)="submit()" [formGroup]="form">
-
+          <form class="" (ngSubmit)="submit()" [formGroup]="form"
+            style="gap: 2rem; display: flex; flex-direction: column;">
             <mat-form-field appearance="outline" class="w-100" color="primary">
               <mat-label class="mat-subtitle-2 ">Mail</mat-label>
               <input matInput formControlName="mail" email />
+              @if (form.get('mail')?.hasError('required')) {
+              <mat-error>Veuillez entrer votre email</mat-error>
+              }
+              @if (form.get('mail')?.hasError('email')) {
+              <mat-error>Veuillez entrer un email valide</mat-error>
+              }
+              @if (form.get('mail')?.hasError('incorrect')) {
+              <mat-error>Cet email n'est pas encore inscrit</mat-error>
+              }
+
             </mat-form-field>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
+            <!-- <mat-form-field appearance="outline" class="w-100" color="primary">
               <mat-label class="mat-subtitle-2 ">Phone</mat-label>
               <input matInput formControlName="phone" />
-            </mat-form-field>
+            </mat-form-field> -->
 
 
             <mat-form-field appearance="outline" class="w-100" color="primary">
@@ -37,7 +47,7 @@
             </button>
           </form>
           <span class=" f-w-500 text-center m-t-24">
-            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
+            <a [routerLink]="['/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
               Créer votre compte?
             </a>
           </span>

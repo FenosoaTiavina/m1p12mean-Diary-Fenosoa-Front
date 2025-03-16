@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
-import { RouterModule } from '@angular/router';
+import { RouterModule , Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { inject } from '@angular/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -33,12 +33,11 @@ export class HeaderComponent {
   @Input() showToggle = true;
   @Input() toggleChecked = false;
   @Output() toggleMobileNav = new EventEmitter<void>();
-  authService = inject(AuthService)
+  private authService = inject(AuthService)
+  private router = inject(Router)
   logout(){
     this.authService.logout().subscribe( response =>{
-      console.log(response);
-    }
-    )
-
+      this.router.navigate(['/']);
+    })
   }
 }
