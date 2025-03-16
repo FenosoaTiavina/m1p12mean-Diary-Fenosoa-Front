@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "m1p12mean-Diary-Fenosoa-Front": {
+    "meanfd": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,8 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "moment",
+              "bezier-easing"
+            ],
             "outputPath": {
-              "base": "dist/m1p12mean-Diary-Fenosoa-Front"
+              "base": "dist/meanfd"
             },
             "index": "src/index.html",
             "polyfills": [
@@ -68,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "m1p12mean-Diary-Fenosoa-Front:build:production"
+              "buildTarget": "meanfd:build:production"
             },
             "development": {
-              "buildTarget": "m1p12mean-Diary-Fenosoa-Front:build:development"
+              "buildTarget": "meanfd:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "m1p12mean-Diary-Fenosoa-Front:build"
+            "buildTarget": "meanfd:build"
           }
         },
         "test": {
